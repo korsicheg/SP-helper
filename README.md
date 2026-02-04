@@ -336,15 +336,7 @@ The `.env` file should NOT appear in the list. Only `.env.example` should be tra
 
 ## License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
-
-**You are free to:**
-- Share — copy and redistribute the material
-- Adapt — remix, transform, and build upon the material
-
-**Under the following terms:**
-- **Attribution** — You must give appropriate credit
-- **NonCommercial** — You may not use the material for commercial purposes
+This project is licensed under the **MIT License**.
 
 See the [LICENSE](LICENSE) file for full details.
 
