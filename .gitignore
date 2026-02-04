@@ -1,0 +1,45 @@
+# Environment configuration - NEVER COMMIT!
+.env
+
+# KeePass database files
+*.kdbx
+
+# Generated output files
+*.csv
+*.eml
+*.html
+
+# Logs
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# PowerShell
+*.ps1xml
+*.psc1
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Output directories
+output/
+logs/
+reports/
