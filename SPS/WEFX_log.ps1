@@ -26,7 +26,7 @@ if ($currentDate) {
 $allData = @()
 for ($start = $unixStart; $start -lt $unixCurrent; $start += 7201) {
 	$end = $start + 7200
-	$logData = '{"request":"getSystemLogTable","data":{"from":' + $start + ',"to":' + $end + ',"filter":"' + $requestType[1] + ',"instances":' + ${env:INSTANCES} + ',"users":' + $users + '}}'
+	$logData = '{"request":"getSystemLogTable","data":{"from":' + $start + ',"to":' + $end + ',"filter":"' + $requestType[1] + '","instances":' + ${env:INSTANCES} + ',"users":' + $users + '}}'
 	$logJson = (Invoke-WebRequest -Uri $url -Headers $logHeaders -Method POST -Body $logData -WebSession $websession | ConvertFrom-Json)
 	$allData += $logJson.tableContent
 }

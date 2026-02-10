@@ -6,18 +6,21 @@ param(
 	[Parameter(Mandatory = $true)] $unixStart,
 	[Parameter(Mandatory = $true)] $unixEnd
 )
-#15/01/2026 12:22:00
-$unixStart = ([datetimeoffset](Get-Date '2026-01-15 12:22:01')).ToUnixTimeSeconds()
-
 $csvMMMMyyyy = (Get-Date ([datetimeoffset]::FromUnixTimeSeconds($unixEnd).UtcDateTime) -Format "MMMMyyyy")
 
 # Define CSV path and headers
 $csvPath = $csvMMMMyyyy + "UserQueries.csv"
-$headers = "Instance","Timestamp","Log","ID","User","Query Name","Index searched","Message","Comment"
+$csvHeaders = "Instance","Timestamp","Log","ID","User","Query Name","Index searched","Message","Comment"
 
-# Write CSV header once
+# Write CSV header once, or resume from last entry
 if (-not (Test-Path $csvPath)) {
-    $headers -join "," | Out-File -FilePath $csvPath -Encoding UTF8
+    $csvHeaders -join "," | Out-File -FilePath $csvPath -Encoding UTF8
+} else {
+    $lastLine = Get-Content $csvPath -Tail 1
+    if ($lastLine -and $lastLine -ne ($csvHeaders -join ",")) {
+        $lastEntry = $lastLine | ConvertFrom-Csv -Header $csvHeaders
+        $unixStart = ([datetimeoffset][datetime]$lastEntry.Timestamp).ToUnixTimeSeconds() + 1
+    }
 }
 
 # Calculate total days

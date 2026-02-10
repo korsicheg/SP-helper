@@ -19,7 +19,7 @@ if ($currentDate) {
 }
 
 # Prepare the request data
-$logData = '{"request":"getSystemLogTable","data":{"from":' + $unixStart + ',"to":' + $unixEnd + ',"filter":"' + $requestType[1] + ',"instances":' + ${env:INSTANCES} + ',"users":' + $users + '}}'
+$logData = '{"request":"getSystemLogTable","data":{"from":' + $unixStart + ',"to":' + $unixEnd + ',"filter":"' + $requestType[1] + '","instances":' + ${env:INSTANCES} + ',"users":' + $users + '}}'
 
 # Fetch log response
 $logJson = (Invoke-WebRequest -Uri $url -Headers $logHeaders -Method POST -Body $logData -WebSession $websession) | ConvertFrom-Json
