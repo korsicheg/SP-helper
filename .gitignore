@@ -6,6 +6,8 @@
 
 # Generated output files
 *.csv
+*.xlsx
+*.xls
 *.eml
 *.html
 

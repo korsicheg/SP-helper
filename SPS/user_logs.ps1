@@ -19,7 +19,7 @@ if (-not (Test-Path $csvPath)) {
     $lastLine = Get-Content $csvPath -Tail 1
     if ($lastLine -and $lastLine -ne ($csvHeaders -join ",")) {
         $lastEntry = $lastLine | ConvertFrom-Csv -Header $csvHeaders
-        $unixStart = ([datetimeoffset][datetime]$lastEntry.Timestamp).ToUnixTimeSeconds() + 1
+        $unixStart = ([datetimeoffset][datetime]::Parse($lastEntry.Timestamp, [System.Globalization.CultureInfo]::CurrentCulture)).ToUnixTimeSeconds() + 1
     }
 }
 
