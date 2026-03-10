@@ -33,7 +33,7 @@ if ($currentMidnight -lt $unixStart) {
 }
 
 # Cache query definition once (instead of fetching for every record)
-$queryUid = ${env:QUERY_UID}
+$queryUid = [int]${env:QUERY_UID}
 $getQueryInfo = '{"request":"get","uid":' + $queryUid + ',"data":{}}'
 $baseQuery = Invoke-RestMethod -Uri $url -Headers $logHeaders -Method POST -Body $getQueryInfo -WebSession $websession
 
